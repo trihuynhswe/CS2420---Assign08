@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Represents a "dictionary" of strings using a binary search tree and offers
  * methods for spell-checking documents.
  * 
- * @author Prof. Parker and ??
+ * @author Prof. Parker, Kableb Neilson and Justin Huynh
  * @version June 27, 2024
  */
 public class SpellChecker {
@@ -37,7 +37,8 @@ public class SpellChecker {
 	/**
 	 * Creates dictionary from a file.
 	 * 
-	 * @param dictionaryFile - the file containing strings used to build the dictionary
+	 * @param dictionaryFile - the file containing strings used to build the
+	 *                       dictionary
 	 */
 	public SpellChecker(File dictionaryFile) {
 		this();
@@ -65,28 +66,29 @@ public class SpellChecker {
 	/**
 	 * Spell-checks a document against the dictionary.
 	 * 
-	 * @param documentFile - the file containing strings to be looked up in the dictionary
+	 * @param documentFile - the file containing strings to be looked up in the
+	 *                     dictionary
 	 * @return the list of misspelled words
 	 */
 	public List<String> spellCheck(File documentFile) {
 		List<String> wordsToCheck = readFromFile(documentFile);
-		
+
 		// TODO (do not return null)
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Determines the number of words that are between begin and end (inclusive).
 	 * 
 	 * @param begin - the string at the beginning of the range
-	 * @param end - the string at the end of the range
+	 * @param end   - the string at the end of the range
 	 * @return the number of words that are between begin and end
 	 */
 	public int countWordsBetween(String begin, String end) {
 		// TODO (do not return 0)
 		return 0;
-	}	
+	}
 
 	/**
 	 * Fills in the dictionary with the input list of words.
@@ -98,9 +100,9 @@ public class SpellChecker {
 	}
 
 	/**
-	 * Generates a list of the words contained in the specified file. 
-	 * Note that symbols, digits, and spaces are ignored, and all characters
-	 * are converted to lowercase.
+	 * Generates a list of the words contained in the specified file. Note that
+	 * symbols, digits, and spaces are ignored, and all characters are converted to
+	 * lowercase.
 	 * 
 	 * @param file - the file to be read
 	 * @return the list of the strings in the input file
@@ -120,24 +122,23 @@ public class SpellChecker {
 			 * it uses whitespace as the delimiter. The following statement specifies
 			 * anything other than alphabetic characters as a delimiter (so that punctuation
 			 * and such will be ignored). The string argument is a regular expression that
-			 * specifies "anything but an alphabetic character". For the assignment, it is 
+			 * specifies "anything but an alphabetic character". For the assignment, it is
 			 * acceptable for your understanding of this to be limited.
 			 */
 			fileInput.useDelimiter("\\s*[^a-zA-Z]\\s*");
 
-			while(fileInput.hasNext()) {
+			while (fileInput.hasNext()) {
 				String s = fileInput.next();
-				if(!s.equals("")) 
+				if (!s.equals(""))
 					words.add(s.toLowerCase());
 			}
-			
+
 			fileInput.close();
 
-		}
-		catch(FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			System.err.println("File " + file + " cannot be found.");
 		}
-		
+
 		return words;
 	}
 }

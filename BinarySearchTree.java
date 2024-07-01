@@ -300,7 +300,31 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 	 */
 	@Override
 	public Object[] toArrayRange(Type begin, Type end) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Type> list = new ArrayList<>();
+		inOrderRangeTraversal(root, list, begin, end);
+		return list.toArray();
+	}
+
+	/**
+	 * Helper method to perform in-order traversal and collect items within the
+	 * specified range.
+	 * 
+	 * @param node  the current node in the traversal
+	 * @param list  the list to collect the items
+	 * @param begin the lower bound of the range (inclusive)
+	 * @param end   the upper bound of the range (inclusive)
+	 */
+	private void inOrderRangeTraversal(BinaryNode<Type> node, List<Type> list, Type begin, Type end) {
+		if (node != null) {
+			if (node.data.compareTo(begin) >= 0) {
+				inOrderRangeTraversal(node.leftChild, list, begin, end);
+			}
+			if (node.data.compareTo(begin) >= 0 && node.data.compareTo(end) <= 0) {
+				list.add(node.data);
+			}
+			if (node.data.compareTo(end) <= 0) {
+				inOrderRangeTraversal(node.rightChild, list, begin, end);
+			}
+		}
 	}
 }

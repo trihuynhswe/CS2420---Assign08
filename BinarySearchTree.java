@@ -23,7 +23,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 	private int size;
 
 	// Default Constructor initializes an empty BST.
-	private BinarySearchTree() {
+	public BinarySearchTree() {
 		this.root = null;
 		this.size = 0;
 	}

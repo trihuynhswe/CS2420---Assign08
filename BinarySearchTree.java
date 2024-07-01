@@ -61,34 +61,35 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 	 */
 	@Override
 	public boolean add(Type item) {
-		if (contains(item)) { // check if the items exist or not
+		if (contains(item)) { // check the duplicate
 			return false;
 		}
-		root = insert(root, item); // using insert for add the item in the tree
+		if (root == null) { // assign the item to be the root value, when there is no root at the beginning.
+			root = new BinaryNode<>(item);
+		}
+		BinaryNode<Type> currNode = root; // make a temp variable name currNode with the root value.
+		currNode = insert(currNode, item); // start to the recursive of the helper method
 		size += 1;
 		return true;
 	}
 
 	/**
-	 * Recursively inserts the specified element into the BST.
+	 * Recursively inserts the specified element into the BST. `
 	 * 
-	 * @param node - the root of the subtree into which the element is to be
-	 *             inserted
-	 * @param item - the element to be inserted
+	 * @param currNode - the root of the subtree into which the element is to be
+	 *                 inserted
+	 * @param item     - the element to be inserted
 	 * @return the new root of the subtree
 	 */
-	private BinaryNode<Type> insert(BinaryNode<Type> node, Type item) {
+	private BinaryNode<Type> insert(BinaryNode<Type> currNode, Type item) {
 
-		if (node == null) {
-			return new BinaryNode<>(item);
+		if (item.compareTo(currNode.data) < 0) {
+			currNode.leftChild = insert(currNode.leftChild, item);
 		}
-		if (item.compareTo(node.data) < 0) {
-			node.leftChild = insert(node.leftChild, item);
+		if (item.compareTo(currNode.data) > 0) {
+			currNode.rightChild = insert(currNode.rightChild, item);
 		}
-		if (item.compareTo(node.data) > 0) {
-			node.rightChild = insert(node.rightChild, item);
-		}
-		return node;
+		return currNode;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package assign08;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
@@ -11,7 +13,7 @@ import java.util.NoSuchElementException;
  * @param <Type> the type of the elements in this tree, which must be comparable
  *               to itself.
  * @author: Kableb Neilson and Justin Huynh
- * @version: July 5th, 2024
+ * @version: July 5, 2024
  */
 
 public class BinarySearchTree<Type extends Comparable<? super Type>> implements SortedSet<Type> {
@@ -256,16 +258,49 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 		return size;
 	}
 
+	/**
+	 * Generates a basic array containing all of the items in this set, in sorted
+	 * order.
+	 * 
+	 * @return a basic array containing all of the items in this set
+	 */
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Type> list = new ArrayList<>();
+		inOrderTraversal(root, list);
+		return list.toArray();
 	}
 
+	/**
+	 * Helper method to perform in-order traversal and collect items in the list.
+	 * 
+	 * @param node the current node in the traversal
+	 * @param list the list to collect the items
+	 */
+	private void inOrderTraversal(BinaryNode<Type> node, List<Type> list) {
+		if (node != null) {
+			inOrderTraversal(node.leftChild, list);
+			list.add(node.data);
+			inOrderTraversal(node.rightChild, list);
+		}
+	}
+
+	/**
+	 * Generates a basic array containing all of the items in this set that are in
+	 * the range begin to end (inclusive), in sorted order.
+	 * 
+	 * For a BST, this operation must work by efficiently traversing the tree and
+	 * may not sort the items. I.e., do not visit parts of the tree that are known
+	 * to be out of range, and collect the items in order to avoid sorting.
+	 * 
+	 * @param begin the lower bound of the range (inclusive)
+	 * @param end   the upper bound of the range (inclusive)
+	 * @return a basic array containing all of the items in this set that are in the
+	 *         range begin to end (inclusive)
+	 */
 	@Override
 	public Object[] toArrayRange(Type begin, Type end) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

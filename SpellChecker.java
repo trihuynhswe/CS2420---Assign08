@@ -11,7 +11,7 @@ import java.util.Scanner;
  * methods for spell-checking documents.
  * 
  * @author Prof. Parker, Kableb Neilson and Justin Huynh
- * @version June 27, 2024
+ * @version July 5, 2024
  */
 public class SpellChecker {
 
@@ -20,7 +20,7 @@ public class SpellChecker {
 	/**
 	 * Creates empty dictionary.
 	 */
-	public SpellChecker() {s
+	public SpellChecker() {
 		dictionary = new BinarySearchTree<String>();
 	}
 
@@ -73,9 +73,9 @@ public class SpellChecker {
 	public List<String> spellCheck(File documentFile) {
 		List<String> wordsToCheck = readFromFile(documentFile);
 		List<String> misspelledWords = new ArrayList<>();
-		
-		for(String word: wordsToCheck) {
-			if(!dictionary.contains(word))
+
+		for (String word : wordsToCheck) {
+			if (!dictionary.contains(word))
 				misspelledWords.add(word);
 		}
 
@@ -100,7 +100,7 @@ public class SpellChecker {
 	 * @param words - the list of strings to be added to the dictionary
 	 */
 	private void buildDictionary(List<String> words) {
-		for(String word : words)
+		for (String word : words)
 			dictionary.add(word);
 	}
 

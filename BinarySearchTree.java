@@ -207,13 +207,14 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 		} else if (item.compareTo(node.data) > 0) {
 			node.rightChild = removeHelper(node.rightChild, item);
 		} else {
+			// Node to be removed found here. Case 1: the subtree only have 1 child.
 			if (node.leftChild == null) {
-				return node.rightChild;
+				return node.rightChild; // when no left child, moving the right child to the current node.
 			} else if (node.rightChild == null) {
-				return node.leftChild;
-			} else {
-				BinaryNode<Type> minLargeNode = findMin(node.rightChild);
-				node.data = minLargeNode.data;
+				return node.leftChild; // when no right child, moving the left child to the current node.
+			} else { // Case 2: when the subtree have 2 children.
+				BinaryNode<Type> minLargeNode = findMin(node.rightChild); // Store the min of the right subtree
+				node.data = minLargeNode.data; // when found, replace with the current node.
 				node.rightChild = removeHelper(node.rightChild, minLargeNode.data);
 			}
 		}

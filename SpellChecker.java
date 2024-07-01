@@ -20,7 +20,7 @@ public class SpellChecker {
 	/**
 	 * Creates empty dictionary.
 	 */
-	public SpellChecker() {
+	public SpellChecker() {s
 		dictionary = new BinarySearchTree<String>();
 	}
 

@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
  * 
  * @param <Type> the type of the elements in this tree, which must be comparable
  *               to itself.
- * @author: Kableb Neilson and Justin Huynh
+ * @author: Kaleb Neilson and Justin Huynh
  * @version: July 5, 2024
  */
 
@@ -66,11 +66,15 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 		}
 		if (root == null) { // assign the item to be the root value, when there is no root at the beginning.
 			root = new BinaryNode<>(item);
+			size++;
 		}
-		BinaryNode<Type> currNode = root; // make a temp variable name currNode with the root value.
-		currNode = insert(currNode, item); // start to the recursive of the helper method
-		size += 1;
-		return true;
+		else {
+			root = insert(root, item);			  // start to the recursive of the helper method
+			size += 1;
+			return true;
+		}
+		return false;
+
 	}
 
 	/**
@@ -82,11 +86,16 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 	 * @return the new root of the subtree
 	 */
 	private BinaryNode<Type> insert(BinaryNode<Type> currNode, Type item) {
-
-		if (item.compareTo(currNode.data) < 0) {
+		
+		if(currNode == null) {
+			currNode = new BinaryNode<Type>(item);
+			return currNode;
+		}
+			
+		else if (item.compareTo(currNode.data) < 0) {
 			currNode.leftChild = insert(currNode.leftChild, item);
 		}
-		if (item.compareTo(currNode.data) > 0) {
+		else if (item.compareTo(currNode.data) > 0) {
 			currNode.rightChild = insert(currNode.rightChild, item);
 		}
 		return currNode;
@@ -144,7 +153,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 	@Override
 	public Type first() throws NoSuchElementException {
 		if (isEmpty()) {
-			throw new NoSuchElementException();
+			throw new NoSuchElementException("This Binary Search Tree is Empty.");
 		}
 		return findMin(root).data;
 	}
@@ -170,9 +179,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 	 */
 	@Override
 	public Type last() throws NoSuchElementException {
-		if (isEmpty()) {
-			throw new NoSuchElementException();
-		}
+		if(isEmpty())
+			throw new NoSuchElementException("This Binary Search Tree is Empty.");
 		return findMax(root).data;
 	}
 
@@ -329,4 +337,5 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 			}
 		}
 	}
+	
 }

@@ -35,6 +35,11 @@ class BinarySearchTreeTest {
 		bst.add(73);
 		assertTrue(bst.contains(73));
 	}
+	
+	@Test
+	void testContainsFalse() {
+		assertFalse(bst.contains(4));
+	}
 
 	@Test
 	void testClear() {

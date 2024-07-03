@@ -16,6 +16,7 @@ public class SpellCheckerDemo {
 
 		runSpellCheck(mySC, "src/assign08/hello_world.txt");
 		runSpellCheck(mySC, "src/assign08/good_luck.txt");
+		runSpellCheck(mySC, "src/assign08/short_story.txt");
 	}
 
 	/**

@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Represents a "dictionary" of strings using a binary search tree and offers
  * methods for spell-checking documents.
  * 
- * @author Prof. Parker, Kableb Neilson and Justin Huynh
+ * @author Prof. Parker, Kaleb Neilson and Justin Huynh
  * @version July 5, 2024
  */
 public class SpellChecker {
@@ -51,7 +51,7 @@ public class SpellChecker {
 	 * @param word - the string to be added to the dictionary
 	 */
 	public void addToDictionary(String word) {
-		dictionary.add(word);
+		dictionary.add(word.toLowerCase()); // convert to lowerCase for case insensitivity
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class SpellChecker {
 	 * @param word - the string to be removed from the dictionary
 	 */
 	public void removeFromDictionary(String word) {
-		dictionary.remove(word);
+		dictionary.remove(word.toLowerCase()); // convert to lowerCase for case insensitivity
 	}
 
 	/**
@@ -75,8 +75,8 @@ public class SpellChecker {
 		List<String> misspelledWords = new ArrayList<>();
 
 		for (String word : wordsToCheck) {
-			if (!dictionary.contains(word))
-				misspelledWords.add(word);
+			if (!dictionary.contains(word.toLowerCase())) // convert to lowerCase for case insensitivity
+				misspelledWords.add(word.toLowerCase());
 		}
 
 		return misspelledWords;
@@ -90,8 +90,7 @@ public class SpellChecker {
 	 * @return the number of words that are between begin and end
 	 */
 	public int countWordsBetween(String begin, String end) {
-		// TODO (do not return 0)
-		return 0;
+		return dictionary.toArrayRange(begin.toLowerCase(), end.toLowerCase()).length; // convert to lowerCase for case insensitivity
 	}
 
 	/**
@@ -101,7 +100,7 @@ public class SpellChecker {
 	 */
 	private void buildDictionary(List<String> words) {
 		for (String word : words)
-			dictionary.add(word);
+			dictionary.add(word.toLowerCase()); // convert to lowerCase for case insensitivity
 	}
 
 	/**

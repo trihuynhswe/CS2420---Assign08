@@ -67,9 +67,10 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 		if (root == null) { // assign the item to be the root value, when there is no root at the beginning.
 			root = new BinaryNode<>(item);
 			size++;
+			return true;
 		}
-		else {
-			root = insert(root, item);			  // start to the recursive of the helper method
+		else if(root != null){
+			root = insert(root, item); // start to the recursive of the helper method
 			size += 1;
 			return true;
 		}

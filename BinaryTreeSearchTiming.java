@@ -33,7 +33,7 @@ public class BinaryTreeSearchTiming {
 	// Set these numbers for your experiment ///////////////////////////////
 	private static final int firstN = 1000; // smallest value of N
 	private static final int incrementForN = 1000; // how much N increases by each step
-	private static final int numberOfNValues = 20; // number of steps (values of N)
+	private static final int numberOfNValues = 15; // number of steps (values of N)
 	private static final int timesToLoop = 1000; // number of times to loop for random order
 	////////////////////////////////////////////////////////////////////////
 
@@ -65,36 +65,34 @@ public class BinaryTreeSearchTiming {
 			for (int i = 0; i < N; i++) {
 				sortedBST.add(i);
 			}
-
+			int temp;
 			startTime = System.nanoTime();
-			for (int i = 0; i < N; i++) {
-				sortedBST.contains(i);
+			for (int j = 0; j < timesToLoop; j++) {
+				sortedBST.contains(Math.toIntExact(N) / 2);
 			}
 			endTime = System.nanoTime();
-			long sortedOrderTime = (endTime - startTime) / N;
+			long sortedOrderTime = (endTime - startTime) / timesToLoop;
 
 			///////// ~Random Order Timing~ /////////
 			long totalRandomOrderTime = 0;
-			for (int t = 0; t < timesToLoop; t++) {
-				BinarySearchTree<Integer> randomBST = new BinarySearchTree<>();
-				int[] randomArray = new int[(int) N];
-				for (int i = 0; i < N; i++) {
-					randomArray[i] = i;
-				}
-				shuffleArray(randomArray);
 
-				for (int i = 0; i < N; i++) {
-					randomBST.add(randomArray[i]);
-				}
-
-				startTime = System.nanoTime();
-				for (int i = 0; i < N; i++) {
-					randomBST.contains(randomArray[i]);
-				}
-				endTime = System.nanoTime();
-				totalRandomOrderTime += (endTime - startTime) / N;
+			BinarySearchTree<Integer> randomBST = new BinarySearchTree<>();
+			int[] randomArray = new int[(int) N];
+			for (int i = 0; i < N; i++) {
+				randomArray[i] = i;
 			}
-			long randomOrderTime = totalRandomOrderTime / timesToLoop;
+			shuffleArray(randomArray);
+
+			for (int i = 0; i < N; i++) {
+				randomBST.add(randomArray[i]);
+			}
+
+			long randomStartTime = System.nanoTime();
+			for (int t = 0; t < timesToLoop; t++) {
+				randomBST.contains(randomArray[Math.toIntExact(N)/2]);
+			}
+			long randomEndTime = System.nanoTime();
+			long randomOrderTime = (randomEndTime - randomStartTime) / timesToLoop;
 
 			// Print results for this value of N
 			System.out.println(N + "\t\t" + sortedOrderTime + "\t\t" + randomOrderTime);

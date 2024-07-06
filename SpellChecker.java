@@ -51,7 +51,7 @@ public class SpellChecker {
 	 * @param word - the string to be added to the dictionary
 	 */
 	public void addToDictionary(String word) {
-		dictionary.add(word.toLowerCase()); // convert to lowerCase for case insensitivity
+		dictionary.add(word);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class SpellChecker {
 	 * @param word - the string to be removed from the dictionary
 	 */
 	public void removeFromDictionary(String word) {
-		dictionary.remove(word.toLowerCase()); // convert to lowerCase for case insensitivity
+		dictionary.remove(word);
 	}
 
 	/**
@@ -75,8 +75,8 @@ public class SpellChecker {
 		List<String> misspelledWords = new ArrayList<>();
 
 		for (String word : wordsToCheck) {
-			if (!dictionary.contains(word.toLowerCase())) // convert to lowerCase for case insensitivity
-				misspelledWords.add(word.toLowerCase());
+			if (!dictionary.contains(word))
+				misspelledWords.add(word);
 		}
 
 		return misspelledWords;
@@ -90,7 +90,7 @@ public class SpellChecker {
 	 * @return the number of words that are between begin and end
 	 */
 	public int countWordsBetween(String begin, String end) {
-		return dictionary.toArrayRange(begin.toLowerCase(), end.toLowerCase()).length; // convert to lowerCase for case insensitivity
+		return dictionary.toArrayRange(begin, end).length;
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class SpellChecker {
 	 */
 	private void buildDictionary(List<String> words) {
 		for (String word : words)
-			dictionary.add(word.toLowerCase()); // convert to lowerCase for case insensitivity
+			dictionary.add(word);
 	}
 
 	/**

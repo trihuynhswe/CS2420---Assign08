@@ -1,3 +1,4 @@
+
 package assign08;
 
 import java.util.ArrayList;
@@ -134,7 +135,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 		if (node == null) {
 			return false;
 		}
-		if (item == node.data) {
+		if (item.equals(node.data)) {
 			return true;
 		} else if (item.compareTo(node.data) < 0) {
 			return containHelper(node.leftChild, item);
